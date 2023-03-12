@@ -1,0 +1,32 @@
+{% extends 'main_page/base.html' %}
+
+{% block title %}Adventure{% endblock %}
+
+{% block authenticate %}
+{% include 'main_page/authenticate.html' %}
+{% endblock %}
+
+{%block context%}
+{% if request.user.username == username %}
+	<a href="{% url 'change-adventure' slug %}" class="btn btn-primary">Change adventure</a><br><br>
+	{% endif %}
+{% if image %}
+<img
+src="{{ image }}"
+class="main-image"
+/>
+{% endif %}
+<h2>{{ title|capfirst }}</h2>
+<br />
+<h3>Автор: {{ username }}</h3>
+<br />
+<h3>Длительность: {{ duration }}</h3>
+<br />
+<h3>Количество игроков: {{ amount_players }}</h3>
+<br />
+<h3>{{ description }}</h3>
+<br />
+<h3><a href="{{ adventure.file.url }}">скачать</a></h3>
+<br />
+<h3>{{ time_update }} :Последнее обновление</h3>
+{%endblock%}

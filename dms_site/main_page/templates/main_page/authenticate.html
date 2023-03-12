@@ -1,0 +1,19 @@
+{% if request.user.is_authenticated %}
+  <h3>{{ adventure_count }} <a href="{% url 'user_account' user.username %}">{{ user.first_name }}</a></h3><br>
+  <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a><br><br>
+{% else %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <h3>Login: </h3>{{ form.username }}<br>
+    {% if form.username.errors %}
+    <h4>{{form.username.errors}}</h4>
+    {% endif %}
+    <h3>Password: </h3>{{ form.password }}<br><br>
+    {% if form.password.errors %}
+    <h4>{{form.password.errors}}</h4>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Login</button><br><br>
+    </form>
+  <a href="{% url 'register_user' %}" class="btn btn-primary">Register</a><br><br>
+{% endif %}

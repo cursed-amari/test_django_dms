@@ -1,0 +1,26 @@
+{% extends 'main_page/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block authenticate %}
+{% endblock %}
+
+{% block context %}
+	<h2>Name: {{user.first_name}}</h2>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.non_field_errors }}
+		{{ form.errors }}
+		<h3>New name: </h3>{{ form.first_name }}<br>
+		<button type="submit" class="btn btn-primary">Change name</button><br><br>
+	</form>
+	<h2>Login: {{user.username}}</h2>
+	<a href="{% url 'password' %}" class="btn btn-primary">Change password</a>
+	<br>
+	<br>
+	<br>
+	<h2>Your adventure</h2>
+	{% for i in adventure %}
+		<h3><a href="{% url 'adventure_page'%}/{{i.slug}} " class="btn btn-primary">{{i}}</a></h3>
+	{% endfor %}
+{% endblock %}

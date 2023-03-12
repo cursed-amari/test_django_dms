@@ -1,0 +1,27 @@
+{% extends 'main_page/base.html' %}
+
+{% block title %}Adventure{% endblock %}
+
+{% block authenticate %}
+{% endblock %}
+
+{%block context%}
+	<form method="post">
+		{% csrf_token %}
+		{{ form.non_field_errors }}
+		{{ form.errors }}
+		<h3>Title*</h3>
+		<h4>{{ form.title }}</h4>
+		<h3>Amount players*</h3>
+		<h4>{{ form.amount_players }}</h4>
+		<h3>Duration</h3>
+		<h4>{{ form.duration }}</h4>
+		<h3>Description*</h3>
+		<h4>{{ form.description }}</h4>
+		<h3>Image</h3>
+		<h4>{{ form.image }}</h4>
+		<h3>File*</h3>
+		<h4>{{ form.file }}</h4><br><br>
+		<button type="submit" class="btn btn-primary">Change</button>
+	</form>
+{%endblock%}

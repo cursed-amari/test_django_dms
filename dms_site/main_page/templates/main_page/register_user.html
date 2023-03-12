@@ -1,0 +1,23 @@
+{% extends 'main_page/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block authenticate %}
+{% endblock %}
+
+{% block context %}
+	<form method="post">
+		{% csrf_token %}
+		{{ form.non_field_errors }}
+		<h3>Login: </h3>{{ form.username }}<br>
+		<h3>{{ form.username.errors }}</h3><br>
+		<h3>Name: </h3>{{ form.first_name }}<br>
+		<h3></h3>{{ form.first_name.errors }}<br>
+		<h3>Password: </h3>{{ form.password1 }}<br>
+		<h3>{{ form.password1.errors }}</h3><br>
+		<h3>Repeat password: </h3>{{ form.password2 }}<br><br>
+		<h3>{{ form.password2.errors }}</h3><br>
+		<button type="submit" class="btn btn-primary">Sign up</button><br><br>
+	</form>
+	<a href="{% url 'main_page' %}" class="btn btn-primary">Home</a><br><br>
+{% endblock %}
